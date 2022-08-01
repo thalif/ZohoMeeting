@@ -1,0 +1,30 @@
+body
+{
+    padding: 0px;
+    margin: 0px auto;
+    width: 800px;
+}
+.videos
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1em;
+    width: 100%;
+    padding: 10px;
+}
+.video-player
+{
+    width: 100%;
+    border: 2px solid greenyellow;
+    background-color: brown;
+}
+textarea
+{
+    height: 50px;
+    width: 100%;
+}
+#create-offer
+{
+    background-color: royalblue;
+    color: white;
+}
