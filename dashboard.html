@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Meeting Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="./style/dashboard.css">
+</head>
+<body>
+    <div class="main-div">
+        <button id="reset-btn">Reset</button>
+        <div class="control">
+            <button class="meeting-action-btn" id="create-meet-btn">Create</button>
+            <button class="meeting-action-btn" id="join-meet-btn">Join</button>
+        </div>
+        <div class="invite-block" id="invite-block">
+            <div id="copy-logo">
+
+            </div>
+            <div id="msg-text">
+                Link copied to clipboard.!
+            </div>
+            <button id="copyto-clipboard">Copy</button>
+        </div>
+        <div class="join-block" id="join-block">
+            <label>Join link</label>
+            <textarea id="remote-sdp-input" type="text"></textarea>
+            <button id="join-btn">Join</button>
+        </div>
+    </div>
+</body>
+<script type="module" src="./JS/dashboard.js"></script>
+</html>

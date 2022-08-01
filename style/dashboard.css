@@ -1,0 +1,106 @@
+body {
+    background-color: #e5caff;
+}
+.main-div {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.control {
+    position: relative;
+    bottom: 150px;
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+#reset-btn {
+    width: 80px;
+    height: 30px;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+.meeting-action-btn {
+    background-color: royalblue;
+    box-shadow:  3px 3px 10px #848484;
+    width: 200px;
+    height: 200px;
+    color: white;
+    font-weight: bolder;
+    font-size: large;
+    border: 2px solid #183792;
+    border-radius: 10px;
+}
+#join-meet-btn {
+    background-color: blueviolet;
+}
+#join-meet-btn:hover {
+    background-color: #a567df;
+}
+.meeting-action-btn:hover {
+    background-color: #7c9af1;
+}
+
+/* =========[ Invite and Join block ]========= */
+/* ================================== */
+.invite-block {
+    width: 400px;
+    height: 40px;
+    padding: 10px;
+    box-shadow:  3px 3px 10px #848484;
+    background-color: #b5c1e7;
+    border: 2px solid royalblue;
+    border-radius: 5px;
+
+    display: none;
+    flex-direction: row;
+}
+#copy-logo {
+    width: 15%;
+    height: 100%;
+    background-color: forestgreen;
+}
+#msg-text {
+    width: 70%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* =========[ Join section ]========= */
+.join-block {
+    padding: 10px;
+    width: 400px;
+    height: 50px;
+
+    box-shadow:  3px 3px 10px #848484;
+    background-color: #caa5ea;
+    border: 2px solid blueviolet;
+    border-radius: 5px;
+
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+}
+label {
+    width: 10%;
+    text-align: center;
+    align-items: center;
+    align-self: center;
+}
+#remote-sdp-input {
+    width: 70%;
+    height: 90%;
+}
+#join-btn{
+    width: 15%;
+    height: 100%;
+}

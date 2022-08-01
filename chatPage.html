@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Meeting Page</title>
+    <link rel="stylesheet" type="text/css" href="./style/chatPage.css">
+</head>
+<body>
+    <div class="main-div">
+        <div class="left-block">
+            <div class="link-block">
+                <button id="clipboard-copy-btn">Invite link</button>
+            </div>
+        </div>
+        <div class="middle-block">
+            <div class="header">
+
+            </div>
+            <div class="footer">
+                <div class="video-player-primary">
+                    <video id="user-2" autoplay playsinline></video>
+                    <label>User Name</label>
+                </div>
+                <div class="video-player-secondary">
+                    <video class="video" id="user-1" autoplay playsinline></video>
+                </div>                
+            </div>
+            <div class="footer-2">
+                <textarea id="answer-sdp-input"></textarea>
+                <button id="add-candidate-btn">Add</button>
+            </div>
+        </div>
+        <div class="right-block">
+
+        </div>
+    </div>
+</body>
+<script type="module" src="./JS/chatPage.js"></script>
+</html>

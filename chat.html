@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Meeting</title>
+    <link rel="stylesheet" type="text/css"href="./style/chat.css">
+</head>
+<body>
+    <button id="start-btn">Start</button>
+    <div class="videos" id="videos">
+        <video class="video-player" id="user-1" autoplay playsinline></video>
+        <video class="video-player" id="user-2" autoplay playsinline></video>
+    </div>
+
+    <button id="create-offer">Call</button>
+    <label>SDP Offer</label>
+    <textarea id="offer-sdp"></textarea>
+
+    <button id="create-answer">Create Answer</button>
+    <label>SDP Answer</label>
+    <textarea id="answer-sdp"></textarea>
+
+    <button id="add-answer">Add answer</button>
+
+    <div class="text-chat-section">
+        <input id="chat-box" type="text">
+        <button id="send-msg-btn">Send</button>
+    </div>
+    <div id="chats"></div>
+</body>
+<script src="./main.js"></script>
+</html>

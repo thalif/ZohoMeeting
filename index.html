@@ -2,30 +2,16 @@
 <html lang="en">
 <head>
     <title>Meeting</title>
-    <link rel="stylesheet" type="text/css"href="main.css">
+    <link rel="stylesheet" type="text/css" href="./style/main.css">
 </head>
 <body>
-    <button id="start-btn">Start</button>
-    <div class="videos" id="videos">
-        <video class="video-player" id="user-1" autoplay playsinline></video>
-        <video class="video-player" id="user-2" autoplay playsinline></video>
+    <div class="loging-card">
+        <div class="name-block">
+            <label>Username</label>
+            <input class="user-name-input" id="user-name-input" type="text">
+        </div>
+        <button id="login-btn">Login</button>
     </div>
-
-    <button id="create-offer">Call</button>
-    <label>SDP Offer</label>
-    <textarea id="offer-sdp"></textarea>
-
-    <button id="create-answer">Create Answer</button>
-    <label>SDP Answer</label>
-    <textarea id="answer-sdp"></textarea>
-
-    <button id="add-answer">Add answer</button>
-
-    <div class="text-chat-section">
-        <input id="chat-box" type="text">
-        <button id="send-msg-btn">Send</button>
-    </div>
-    <div id="chats"></div>
 </body>
-<script src="./main.js"></script>
+<script type="module" src="./JS/main.js"></script>
 </html>

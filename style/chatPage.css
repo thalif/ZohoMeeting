@@ -1,0 +1,107 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    background-color: #e5caff;
+}
+.main-div {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+/* =====[ Offer link button ]======= */
+.link-block {
+    width: 100px;
+    height: 40px;
+    box-shadow:  3px 3px 10px #848484;
+    background-color: #b5c1e7;
+    border: 2px solid royalblue;
+    border-radius: 5px;
+
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+#clipboard-copy-btn {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 0px;
+}
+
+/* =====[ Content blocks ]======= */
+.left-block {
+    width: 13%;
+    height: 100%;
+    background-color: #97a8df;
+}
+.middle-block {
+    width: 63%;
+    height: 100%;
+    background-color: #888fa6;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========[ Header ]================= */
+.header {
+    width: 100%;
+    height: 15%;
+    background-color: royalblue;
+}
+
+/* ========[ Footer ]================= */
+.footer {
+    width: 100%;
+    height: 70%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.video-player-primary {
+    width: 70%;
+    height: 90%;
+    background-color: rgb(71, 71, 71);
+    border: 3px dashed royalblue;
+    border-radius: 5px;
+}
+#user-2 {
+    height: 94%;
+}
+.video-player-secondary {
+    width: 22%;
+    height: 25%;
+
+    background-color: rgb(71, 71, 71);
+    border: 3px dashed royalblue;
+    border-radius: 5px;
+}
+.video-player-primary label {
+    padding-left: 10px;
+    color: gainsboro;
+}
+
+.footer-2 {
+    width: 100%;
+    height: 13%;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: rebeccapurple;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#answer-sdp-input{
+    width: 80%;
+    height: 70%;
+}
+#add-candidate-btn {
+    width: 18%;
+    height: 70%;
+}
