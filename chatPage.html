@@ -2,35 +2,66 @@
 <html lang="en">
 <head>
     <title>Meeting Page</title>
-    <link rel="stylesheet" type="text/css" href="./style/chatPage.css">
+    <link rel="stylesheet" type="text/css" href="./style/chatPage2.css">
 </head>
 <body>
     <div class="main-div">
-        <div class="left-block">
-            <div class="link-block">
-                <button id="clipboard-copy-btn">Invite link</button>
-            </div>
-        </div>
-        <div class="middle-block">
-            <div class="header">
+        <div class="header">
 
-            </div>
-            <div class="footer">
-                <div class="video-player-primary">
-                    <video id="user-2" autoplay playsinline></video>
-                    <label>User Name</label>
+        </div>
+        <div class="center">
+            <div class="left-block">
+                <div class="chat-block" id="chat-block">
+                    <ul id="chat-list"></ul>
+                    <div class="input-control">
+                        <input id="chat-input" type="text">
+                        <button id="send-btn">--=))}-</button>
+                    </div>
                 </div>
-                <div class="video-player-secondary">
-                    <video class="video" id="user-1" autoplay playsinline></video>
-                </div>                
             </div>
-            <div class="footer-2">
-                <textarea id="answer-sdp-input"></textarea>
-                <button id="add-candidate-btn">Add</button>
+            <div class="middle-block">
+                <div class="middle-left">
+                    <div class="video-player-primary">
+                        <video class="video" id="user-2" autoplay playsinline></video>
+                        <label id="username-label">User Name</label>
+                    </div>
+                </div>
+                <div class="middle-right">
+                    <div class="video-player-secondary">
+                        <video class="video" id="user-1" autoplay playsinline></video>
+                        <label>Your</label>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="right-block">
 
+            <div class="right-block">
+
+                <!-- Offer and Answer Section -->
+                <div class="meeting-action" id="meeting-action">
+                    <button class="chat-action-btn" id="create-meeting-btn">Create Meeting</button>
+                    <div>
+                        <label>Offer SDP</label>
+                        <textarea class="sdp-input" id="offer-input"></textarea>
+                    </div>
+                    <div>
+                        <label>AnswerSDP</label>
+                        <textarea class="sdp-input" id="answer-input"></textarea>
+                    </div>
+                    <button class="chat-action-btn" id="add-candidate-btn">Add Candidate</button>
+                </div>
+    
+                <div class="meeting-answer" id="meeting-answer">
+                    <div>
+                        <label>Offer SDP</label>
+                        <textarea class="sdp-input" id="remote-offer-input"></textarea>
+                    </div>
+                    <div>
+                        <button class="chat-action-btn" id="create-answer-btn">Create answer SDP</button>
+                        <label>Answer SDP</label>
+                        <textarea class="sdp-input" id="remote-answer-input"></textarea>
+                    </div>
+                </div>
+        </div>    
         </div>
     </div>
 </body>
