@@ -1,21 +1,21 @@
 import Utils from "./util.js";
+const socket = io.connect('http://localhost:5502');
 
 let Util = new Utils();
-let offerInput = document.getElementById('offer-input');
-let answerInput = document.getElementById('answer-input');
 
-let remoteOfferInput = document.getElementById('remote-offer-input');
-let remoteAnswerInput = document.getElementById('remote-answer-input');
+let usernameLabel = document.getElementById('username-label');
+let answerPanel = document.getElementById('meeting-answer');
+let calleeNameInput = document.getElementById('callee-name');
 
 let createMeetingBtn = document.getElementById('create-meeting-btn');
 let createAnswerBtn = document.getElementById('create-answer-btn');
-let addCandidateBtn = document.getElementById('add-candidate-btn');
 
 let chatList = document.getElementById('chat-list');
 let chatInput = document.getElementById('chat-input');
 let sendMessageBtn = document.getElementById('send-btn');
 
 let UserName;
+let CalleName;
 let sessionType;
 let localStream;
 let remoteStream;
@@ -23,15 +23,57 @@ let peerConnection;
 let dataChannel;
 let offer, answer;
 
-addCandidateBtn.addEventListener('click', () => {
-    AddAnswer();
-})
+let socketData;
+
 createMeetingBtn.addEventListener('click', () => {
-    CreateMeeting();
+    CalleName = calleeNameInput.value;
+    if (CalleName) {
+        CreateMeeting();
+        setTimeout(() => {
+            socket.emit('chat', {
+                user: UserName,
+                callee: CalleName,
+                sdp: JSON.stringify(offer),
+                type: 'offer'
+            });
+        }, 1)
+    }
 })
+// ===========[ Socket event ]=========
+socket.on('chat', function(data)
+{
+    socketData = data;
+    CalleName = socketData.callee;
+    if (socketData.type == 'offer') {
+        if (socketData.user != UserName) {
+            if (CalleName === UserName) {
+                JoinMeeting(socketData.sdp);
+                answerPanel.style.display = 'flex';
+            }
+            else {
+                console.log('user not found');
+            }
+        }
+    }
+    else if (socketData.type == 'answer') {
+        if (socketData.user != UserName) {
+            AddAnswer(socketData.sdp);
+        }
+    }
+});
+
+
 createAnswerBtn.addEventListener('click', () => {
-    JoinMeeting(remoteOfferInput.value);
+    if(CalleName) {
+        socket.emit('chat', {
+            user: UserName,
+            callee: CalleName,
+            sdp: answer,
+            type: 'answer'
+        });
+    }
 })
+
 sendMessageBtn.addEventListener('click', () => {
     SendMessage()
 })
@@ -40,15 +82,18 @@ sendMessageBtn.addEventListener('click', () => {
 window.onload = (event) => {
 
     UserName = Util.GetUsername();
-    sessionType = Util.GetChatSessionType();
-    InvokeLocalStream();
-    if(sessionType == 'true') {
-        document.getElementById('meeting-action').style.display = 'flex';
-        document.getElementById('meeting-answer').style.display = 'none';
-    }
-    else {
-        document.getElementById('meeting-action').style.display = 'none';
-        document.getElementById('meeting-answer').style.display = 'flex';
+    if (UserName) {
+        usernameLabel.innerText = UserName;
+        sessionType = Util.GetChatSessionType();
+        InvokeLocalStream();
+        if (sessionType == 'true') {
+            document.getElementById('meeting-action').style.display = 'flex';
+            document.getElementById('meeting-answer').style.display = 'none';
+        }
+        else {
+            document.getElementById('meeting-action').style.display = 'none';
+            document.getElementById('meeting-answer').style.display = 'none';
+        }
     }
 }
 
@@ -71,7 +116,7 @@ let CreateMeeting = async () =>  {
     dataChannel = peerConnection.createDataChannel('KTV');
     peerConnection.onicecandidate = async (event) => {
         if (event.candidate) {
-            offerInput.value = JSON.stringify(peerConnection.localDescription);
+            offer = peerConnection.localDescription;
         }
     };
     peerConnection.ontrack = async (event) => {
@@ -85,7 +130,7 @@ let CreateMeeting = async () =>  {
 
     DataChannelEvent();
     offer = await peerConnection.createOffer();
-    await peerConnection.setLocalDescription(offer);
+    await peerConnection.setLocalDescription(offer);    
 }
 
 function DataChannelEvent()
@@ -104,17 +149,17 @@ function DataChannelEvent()
         AddMessageToList(event.data);
     }
 }
-let AddAnswer = async () => {
+let AddAnswer = async (answer) => {
     
-    let answerSDP = answerInput.value;
+    let answerSDP = answer;
     if(!answerSDP) return alert('no answer data')
     
     answer = JSON.parse(answerSDP)
     if (!peerConnection.currentRemoteDescription) {
         peerConnection.setRemoteDescription(answer)
     }
-    document.getElementById('meeting-action').style.display = 'none';
-    document.getElementById('chat-block').style.display = 'flex';
+    // document.getElementById('meeting-action').style.display = 'none';
+    // document.getElementById('chat-block').style.display = 'flex';
 }
 
 
@@ -125,7 +170,7 @@ let JoinMeeting = async (offerSDP) => {
         peerConnection = new RTCPeerConnection(servers);
         peerConnection.onicecandidate = async (event) => {
             if (event.candidate) {
-                // console.log(JSON.stringify(event.candidate));
+                answer = JSON.stringify(peerConnection.localDescription);
             }
         };
         peerConnection.ontrack = async (event) => {
@@ -144,8 +189,6 @@ let JoinMeeting = async (offerSDP) => {
         await peerConnection.setRemoteDescription(JSON.parse(offerSDP));
         let answerSDP = await peerConnection.createAnswer();
         await peerConnection.setLocalDescription(answerSDP);
-        answer = JSON.stringify(answerSDP);
-        remoteAnswerInput.innerText = answer;
     }
 }
 
@@ -186,3 +229,5 @@ function InvokeRemoteStream() {
     remoteStream = new MediaStream();
     document.getElementById('user-2').srcObject = remoteStream;
 }
+
+

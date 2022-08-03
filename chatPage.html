@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="#">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
     <title>Meeting Page</title>
     <link rel="stylesheet" type="text/css" href="./style/chatPage2.css">
 </head>
 <body>
     <div class="main-div">
         <div class="header">
-
+            <label id="username-label"></label>
         </div>
         <div class="center">
             <div class="left-block">
@@ -35,31 +37,14 @@
             </div>
 
             <div class="right-block">
-
                 <!-- Offer and Answer Section -->
                 <div class="meeting-action" id="meeting-action">
-                    <button class="chat-action-btn" id="create-meeting-btn">Create Meeting</button>
-                    <div>
-                        <label>Offer SDP</label>
-                        <textarea class="sdp-input" id="offer-input"></textarea>
-                    </div>
-                    <div>
-                        <label>AnswerSDP</label>
-                        <textarea class="sdp-input" id="answer-input"></textarea>
-                    </div>
-                    <button class="chat-action-btn" id="add-candidate-btn">Add Candidate</button>
+                    <input id="callee-name" type="text">
+                    <button class="chat-action-btn" id="create-meeting-btn">Call</button>
                 </div>
     
                 <div class="meeting-answer" id="meeting-answer">
-                    <div>
-                        <label>Offer SDP</label>
-                        <textarea class="sdp-input" id="remote-offer-input"></textarea>
-                    </div>
-                    <div>
-                        <button class="chat-action-btn" id="create-answer-btn">Create answer SDP</button>
-                        <label>Answer SDP</label>
-                        <textarea class="sdp-input" id="remote-answer-input"></textarea>
-                    </div>
+                    <button class="chat-action-btn" id="create-answer-btn">Answer</button>
                 </div>
         </div>    
         </div>
