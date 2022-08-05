@@ -116,9 +116,6 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center;
-    position: relative;
-    bottom: 100px; */
 }
 .meeting-action, .meeting-answer {
 
